@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PlyomGram</string>
+    <string name="title_activity_reference">ReferenceActivity</string>
+    <string name="hint_username">Nombre de Usuario</string>
+</resources>
