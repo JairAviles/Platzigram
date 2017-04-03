@@ -1,8 +1,11 @@
 package br.com.plyom.plyomgram;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import br.com.plyom.plyomgram.view.CreateAccountActivity;
 
 public class  LoginActivity extends AppCompatActivity {
 
@@ -13,6 +16,8 @@ public class  LoginActivity extends AppCompatActivity {
     }
 
     public void goCreateAccount(View view) {
+        Intent i = new Intent(this, CreateAccountActivity.class);
+        startActivity(i);
 
     }
 

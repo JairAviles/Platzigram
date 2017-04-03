@@ -15,11 +15,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.CreateAccountActivity" />
+        <activity
+            android:name=".view.CreateAccountActivity"
+            android:parentActivityName=".LoginActivity">
+            <meta-data
+                android:name="androir.support.PARENT_ACTIVITY"
+                android:value=".LoginActivity" />
+        </activity>
         <activity
             android:name=".ReferenceActivity"
             android:label="@string/title_activity_reference"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".view.ContainerActivity"></activity>
     </application>
 
 </manifest>

@@ -13,4 +13,7 @@
     <string name="toolbar_title_create_account">Create Account</string>
     <string name="firstword_card">Hace</string>
     <string name="timecard_card">4 días</string>
+    <string name="tab_search">Search</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_profile">Profile</string>
 </resources>

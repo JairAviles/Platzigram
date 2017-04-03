@@ -13,4 +13,5 @@
     <dimen name="firstword_textsize_card">15sp</dimen>
     <dimen name="timecard_marginleft_card">5dp</dimen>
     <dimen name="like_margintop_card">10dp</dimen>
+    <dimen name="bottombar_height">70dp</dimen>
 </resources>
