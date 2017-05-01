@@ -28,7 +28,8 @@
             android:name=".ReferenceActivity"
             android:label="@string/title_activity_reference"
             android:theme="@style/AppTheme" />
-        <activity android:name=".view.ContainerActivity"></activity>
+        <activity android:name=".view.ContainerActivity" />
+        <activity android:name=".view.PictureDetailActivity"></activity>
     </application>
 
 </manifest>
