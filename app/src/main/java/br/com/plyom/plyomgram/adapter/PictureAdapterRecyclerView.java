@@ -1,6 +1,7 @@
 package br.com.plyom.plyomgram.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 import br.com.plyom.plyomgram.R;
 import br.com.plyom.plyomgram.model.Picture;
+import br.com.plyom.plyomgram.view.PictureDetailActivity;
 
 public class PictureAdapterRecyclerView extends RecyclerView.Adapter<PictureAdapterRecyclerView.PictureViewHolder> {
 
@@ -39,6 +41,14 @@ public class PictureAdapterRecyclerView extends RecyclerView.Adapter<PictureAdap
         holder.userNameCard.setText(picture.getUserName());
         holder.timeCard.setText(picture.getTime());
         Picasso.with(activity).load(picture.getPicture()).into(holder.pictureCard);
+
+        holder.pictureCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, PictureDetailActivity.class);
+                activity.startActivity(intent);
+            }
+        });
     }
 
     @Override
