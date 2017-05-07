@@ -33,4 +33,5 @@
     <dimen name="margintop_usernametoolbarProfile">-100dp</dimen>
     <dimen name="limitY_usernametoolbarprofile">-250dp</dimen>
     <dimen name="margintoptargety_usernametoolbarprofile">-5dp</dimen>
+    <dimen name="padding_recyclerview">5dp</dimen>
 </resources>

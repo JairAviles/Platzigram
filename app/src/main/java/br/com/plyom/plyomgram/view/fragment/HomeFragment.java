@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    public ArrayList<Picture> buildPictures() {
+    private ArrayList<Picture> buildPictures() {
         ArrayList<Picture> pictures = new ArrayList<>();
         pictures.add(new Picture("http://www.novalandtours.com/images/guide/guilin.jpg", "Tiago Peixoto", "4 días", "3 Me gusta"));
         pictures.add(new Picture("http://www.enjoyart.com/library/landscapes/tuscanlandscapes/large/Tuscan-Bridge--by-Art-Fronckowiak-.jpg", "Jair Avilés", "3 días", "10 Me gusta"));
@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
     }
 
 
-    public void showToolbar(String title, boolean upButton, View view) {
+    private void showToolbar(String title, boolean upButton, View view) {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
