@@ -1,0 +1,93 @@
+package br.com.plyom.plyomgram.login.view;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+
+import br.com.plyom.plyomgram.R;
+import br.com.plyom.plyomgram.view.ContainerActivity;
+import br.com.plyom.plyomgram.view.CreateAccountActivity;
+import butterknife.BindView;
+
+public class  LoginActivity extends AppCompatActivity implements LoginView {
+
+    @BindView(R.id.username)
+    private TextInputEditText username;
+    @BindView(R.id.password)
+    private TextInputEditText password;
+    @BindView(R.id.login)
+    private Button login;
+    @BindView(R.id.progressbarLogin)
+    private ProgressBar progressbarLogin;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        gotoWebSite();
+    }
+
+    @Override
+    public void enableInputs() {
+        username.setEnabled(true);
+        password.setEnabled(true);
+        login.setEnabled(true);
+    }
+
+    @Override
+    public void disableInputs() {
+        username.setEnabled(false);
+        password.setEnabled(false);
+        login.setEnabled(false);
+    }
+
+    @Override
+    public void showProgressBar() {
+        progressbarLogin.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        progressbarLogin.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showError(String error) {
+
+    }
+
+    @Override
+    public void goCreateAccount() {
+        Intent i = new Intent(this, CreateAccountActivity.class);
+        startActivity(i);
+
+    }
+
+    @Override
+    public void goHome() {
+        Intent i = new Intent(this, ContainerActivity.class);
+        startActivity(i);
+    }
+
+    private void gotoWebSite() {
+        ImageView imageView = (ImageView) findViewById(R.id.logo);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Uri webpage = Uri.parse("http://platzi.com/");
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+}
