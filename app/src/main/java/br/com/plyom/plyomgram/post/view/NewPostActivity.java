@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
 
 public class NewPostActivity extends AppCompatActivity {
 
-    @BindView(R.id.fabCamera)
+    @BindView(R.id.imgPhoto)
     ImageView imgPhoto;
 
     @Override
