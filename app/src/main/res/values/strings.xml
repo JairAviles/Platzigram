@@ -21,6 +21,7 @@
     <string name="tab_home">Inicio</string>
     <string name="tab_profile">Perfil</string>
     <string name="secondword_detail">Me gusta</string>
+    <string name="login_error">Ocurrió un error:</string>
     <string name="titleimagedetail">Todo copas en la playa</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque finibus non augue accumsan pretium. Curabitur varius placerat massa id sollicitudin. Vivamus bibendum nisl sed imperdiet fermentum. Fusce id lacinia nunc. Nulla lacus leo, pretium id ornare sit amet, vehicula id ipsum. Vivamus et interdum ante. Nam leo nunc, lacinia sed laoreet vitae, maximus sed velit. Maecenas eget ultrices leo, vitae gravida dui. Curabitur blandit id augue id hendrerit. Aliquam erat volutpat.</string>
     <string name="transitionname_picture">transitionnamepicture</string>

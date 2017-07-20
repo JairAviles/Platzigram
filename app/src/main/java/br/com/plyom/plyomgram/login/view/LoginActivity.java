@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import br.com.plyom.plyomgram.R;
 import br.com.plyom.plyomgram.login.presenter.LoginPresenter;
@@ -16,17 +17,18 @@ import br.com.plyom.plyomgram.login.presenter.LoginPresenterImpl;
 import br.com.plyom.plyomgram.view.ContainerActivity;
 import br.com.plyom.plyomgram.view.CreateAccountActivity;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class  LoginActivity extends AppCompatActivity implements LoginView {
 
     @BindView(R.id.username)
-    private TextInputEditText username;
+    TextInputEditText username;
     @BindView(R.id.password)
-    private TextInputEditText password;
+    TextInputEditText password;
     @BindView(R.id.login)
-    private Button login;
+    Button login;
     @BindView(R.id.progressbarLogin)
-    private ProgressBar progressbarLogin;
+    ProgressBar progressbarLogin;
 
     private LoginPresenter presenter;
 
@@ -34,8 +36,11 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
         setListenerGoWebSite();
+        hideProgressBar();
         initPresenter();
+        setListenerLogin();
     }
 
     @Override
@@ -64,7 +69,7 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void showError(String error) {
-
+        Toast.makeText(this, getString(R.string.login_error) + " " + error, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -103,8 +108,9 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if(username.e)
-                presenter.signin(username.getText().toString(), password.getText().toString());
+                if(!username.getText().toString().equals("") && !password.getText().toString().equals("")) {
+                    presenter.signin(username.getText().toString(), password.getText().toString());
+                }
             }
         });
     }

@@ -16,5 +16,6 @@
     <string name="tab_search">Search</string>
     <string name="tab_home">Home</string>
     <string name="tab_profile">Profile</string>
-    <string name="secondword_detail">Me gusta</string>
+    <string name="secondword_detail">Like</string>
+    <string name="login_error">An error has occurred:</string>
 </resources>

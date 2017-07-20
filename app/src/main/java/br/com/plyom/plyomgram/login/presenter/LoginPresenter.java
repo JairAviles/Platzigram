@@ -7,5 +7,5 @@ package br.com.plyom.plyomgram.login.presenter;
 public interface LoginPresenter {
     void signin(String username, String password); // Interactor
     void loginSuccess();
-    void loginError();
+    void loginError(String error);
 }
