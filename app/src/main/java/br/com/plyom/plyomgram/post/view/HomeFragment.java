@@ -2,10 +2,13 @@ package br.com.plyom.plyomgram.post.view;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +18,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import br.com.plyom.plyomgram.R;
 import br.com.plyom.plyomgram.adapter.PictureAdapterRecyclerView;
@@ -38,6 +45,7 @@ public class HomeFragment extends Fragment {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    private String photoPathTemp = "";
 
     public HomeFragment() {
         // Required empty public constructor
@@ -90,16 +98,49 @@ public class HomeFragment extends Fragment {
     }
 
     private void takePicture() {
+
         Intent intentTakePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intentTakePicture.resolveActivity(getActivity().getPackageManager()) != null) {
-            startActivityForResult(intentTakePicture, REQUEST_CAMERA);
+
+            File photoFile = null;
+
+            try {
+                photoFile = createImageFile();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if(photoFile != null) {
+                String packageName = getActivity().getPackageName();
+                Uri photoUri = FileProvider.getUriForFile(getActivity(), packageName, photoFile);
+                intentTakePicture.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                startActivityForResult(intentTakePicture, REQUEST_CAMERA);
+
+            }
         }
+
+    }
+
+    private File createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HH-mm-ss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+        File photo = File.createTempFile(imageFileName, ".jpg", storageDir);
+
+        photoPathTemp = "file:" + photo.getAbsolutePath();
+
+        return photo;
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         if (requestCode == REQUEST_CAMERA && resultCode == getActivity().RESULT_OK) {
             Log.d("HomeFragment", "Camera accessed");
+            Intent i = new Intent(getActivity(), NewPostActivity.class);
+            i.putExtra("PHOTO_PATH_TEMP", photoPathTemp);
+            startActivity(i);
         }
     }
 }

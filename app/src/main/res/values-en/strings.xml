@@ -18,4 +18,7 @@
     <string name="tab_profile">Profile</string>
     <string name="secondword_detail">Like</string>
     <string name="login_error">An error has occurred:</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description</string>
+    <string name="text_button_create_post">Create Post</string>
 </resources>
