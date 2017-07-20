@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import br.com.plyom.plyomgram.R;
+import br.com.plyom.plyomgram.login.presenter.LoginPresenter;
+import br.com.plyom.plyomgram.login.presenter.LoginPresenterImpl;
 import br.com.plyom.plyomgram.view.ContainerActivity;
 import br.com.plyom.plyomgram.view.CreateAccountActivity;
 import butterknife.BindView;
@@ -26,11 +28,14 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
     @BindView(R.id.progressbarLogin)
     private ProgressBar progressbarLogin;
 
+    private LoginPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        gotoWebSite();
+        setListenerGoWebSite();
+        initPresenter();
     }
 
     @Override
@@ -75,7 +80,7 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
         startActivity(i);
     }
 
-    private void gotoWebSite() {
+    private void setListenerGoWebSite() {
         ImageView imageView = (ImageView) findViewById(R.id.logo);
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +93,20 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
             }
         });
 
+    }
+
+    private void initPresenter() {
+        presenter = new LoginPresenterImpl(this);
+    }
+
+    private void setListenerLogin() {
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //if(username.e)
+                presenter.signin(username.getText().toString(), password.getText().toString());
+            }
+        });
     }
 
 }
