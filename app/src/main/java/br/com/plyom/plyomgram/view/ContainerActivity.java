@@ -11,7 +11,7 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
 import br.com.plyom.plyomgram.R;
-import br.com.plyom.plyomgram.view.fragment.HomeFragment;
+import br.com.plyom.plyomgram.post.view.HomeFragment;
 import br.com.plyom.plyomgram.view.fragment.ProfileFragment;
 import br.com.plyom.plyomgram.view.fragment.SearchFragment;
 
