@@ -15,7 +15,6 @@ import br.com.plyom.plyomgram.R;
 import br.com.plyom.plyomgram.login.presenter.LoginPresenter;
 import br.com.plyom.plyomgram.login.presenter.LoginPresenterImpl;
 import br.com.plyom.plyomgram.view.ContainerActivity;
-import br.com.plyom.plyomgram.view.CreateAccountActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -113,6 +112,10 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
                 }
             }
         });
+    }
+
+    public void goCreateAccount(View view) {
+        goCreateAccount();
     }
 
 }
