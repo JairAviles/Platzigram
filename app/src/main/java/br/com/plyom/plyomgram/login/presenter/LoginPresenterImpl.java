@@ -1,5 +1,9 @@
 package br.com.plyom.plyomgram.login.presenter;
 
+import android.app.Activity;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 import br.com.plyom.plyomgram.login.interactor.LoginInteractor;
 import br.com.plyom.plyomgram.login.interactor.LoginInteractorImpl;
 import br.com.plyom.plyomgram.login.view.LoginView;
@@ -19,10 +23,10 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Override
-    public void signin(String username, String password) {
+    public void signin(String username, String password, Activity activity, FirebaseAuth firebaseAuth) {
         loginView.disableInputs();
         loginView.showProgressBar();
-        interactor.signin(username, password);
+        interactor.signin(username, password, activity, firebaseAuth);
     }
 
     @Override

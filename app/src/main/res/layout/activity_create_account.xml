@@ -75,6 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/EditTextBlack"
+                app:passwordToggleEnabled="true"
                 android:layout_marginTop="@dimen/edittext_margin_createaccount"
                 >
 
@@ -92,6 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/EditTextBlack"
+                app:passwordToggleEnabled="true"
                 android:layout_marginTop="@dimen/edittext_margin_createaccount"
                 >
 

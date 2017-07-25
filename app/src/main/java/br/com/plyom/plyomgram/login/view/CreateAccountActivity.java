@@ -47,18 +47,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         showToolbar(getResources().getString(R.string.toolbar_title_create_account), true);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                if (firebaseUser != null) {
-                    Log.i(TAG, "User logged " + firebaseUser.getEmail());
-                } else  {
-                    Log.w(TAG, "User not logged");
-                }
-            }
-        };
+        initFirebase();
 
     }
 
@@ -79,6 +68,21 @@ public class CreateAccountActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
+    }
+
+    private void initFirebase() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                if (firebaseUser != null) {
+                    Log.i(TAG, "User logged " + firebaseUser.getEmail());
+                } else  {
+                    Log.w(TAG, "User not logged");
+                }
+            }
+        };
     }
 
     private void createAccount() {

@@ -1,5 +1,9 @@
 package br.com.plyom.plyomgram.login.interactor;
 
+import android.app.Activity;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 import br.com.plyom.plyomgram.login.presenter.LoginPresenter;
 import br.com.plyom.plyomgram.login.repository.LoginRepository;
 import br.com.plyom.plyomgram.login.repository.LoginRepositoryImpl;
@@ -19,7 +23,7 @@ public class LoginInteractorImpl implements LoginInteractor {
     }
 
     @Override
-    public void signin(String username, String password) {
-        repository.signin(username, password);
+    public void signin(String username, String password, Activity activity, FirebaseAuth firebaseAuth) {
+        repository.signin(username, password, activity, firebaseAuth);
     }
 }
