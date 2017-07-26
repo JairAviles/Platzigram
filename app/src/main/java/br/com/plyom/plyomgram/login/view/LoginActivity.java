@@ -13,8 +13,21 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Arrays;
 
 import br.com.plyom.plyomgram.R;
 import br.com.plyom.plyomgram.login.presenter.LoginPresenter;
@@ -33,6 +46,8 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
     TextInputEditText password;
     @BindView(R.id.login)
     Button login;
+    @BindView(R.id.login_facebook)
+    LoginButton loginFacebook;
     @BindView(R.id.progressbarLogin)
     ProgressBar progressbarLogin;
 
@@ -51,6 +66,7 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
         initPresenter();
         setListenerLogin();
         initFirebase();
+        initFacebook();
 
     }
 
@@ -146,6 +162,50 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
         goCreateAccount();
     }
 
+
+    private void initFacebook() {
+        CallbackManager callbackManager;
+
+        callbackManager = CallbackManager.Factory.create();
+
+        loginFacebook.setReadPermissions(Arrays.asList("email"));
+        loginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.i(TAG, "Facebook Login Success Token: " + loginResult.getAccessToken().getApplicationId());
+                signInFacebookFirebase(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+                Log.i(TAG, "Facebook Login Cancelled");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.e(TAG, "Facebook Login Error: " + error.toString());
+                error.printStackTrace();
+            }
+        });
+
+    }
+
+    private void signInFacebookFirebase(AccessToken accessToken) {
+        AuthCredential authCredential = FacebookAuthProvider.getCredential(accessToken.getToken());
+
+        firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                  goHome();
+                  Toast.makeText(LoginActivity.this, "Login Facebook Successful", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Login Facebook Unsuccessful", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     private void initFirebase() {
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -162,3 +222,4 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
     }
 
 }
+;
