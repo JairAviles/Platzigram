@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
         <provider
             android:authorities="br.com.plyom.plyomgram"
             android:name="android.support.v4.content.FileProvider"
