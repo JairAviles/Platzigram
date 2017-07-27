@@ -1,6 +1,8 @@
 package br.com.plyom.plyomgram.login.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
@@ -201,15 +203,24 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
         AuthCredential authCredential = FacebookAuthProvider.getCredential(accessToken.getToken());
 
         firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                  goHome();
+                    FirebaseUser user = task.getResult().getUser();
+                    SharedPreferences preferences
+                            = getSharedPreferences("USER", Context.MODE_PRIVATE);
+
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("email", user.getEmail());
+                    editor.commit();
+                    goHome();
                   Toast.makeText(LoginActivity.this, "Login Facebook Successful", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(LoginActivity.this, "Login Facebook Unsuccessful", Toast.LENGTH_SHORT).show();
                 }
             }
+
         });
     }
 
