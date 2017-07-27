@@ -55,6 +55,7 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +125,13 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
         startActivity(i);
     }
 
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
     private void setListenerGoWebSite() {
         ImageView imageView = (ImageView) findViewById(R.id.logo);
 
@@ -164,7 +172,6 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
 
 
     private void initFacebook() {
-        CallbackManager callbackManager;
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -213,7 +220,8 @@ public class  LoginActivity extends AppCompatActivity implements LoginView {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
-                    Log.i(TAG, "Logged user " + firebaseUser.getEmail());
+                    Log.i(TAG, "Logged user: " + firebaseUser.getEmail());
+                    goHome();
                 } else  {
                     Log.w(TAG, "Not logged user");
                 }
