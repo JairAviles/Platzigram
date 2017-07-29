@@ -21,7 +21,7 @@ import butterknife.OnClick;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
-    private static final String TAG = "CreateAccountActivity";
+    private static final String TAG = CreateAccountActivity.class.getName();
 
     @BindView(R.id.email)
     TextInputEditText edtEmail;

@@ -40,7 +40,7 @@ import butterknife.ButterKnife;
 
 public class  LoginActivity extends AppCompatActivity implements LoginView {
 
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = LoginActivity.class.getName();
 
     @BindView(R.id.username)
     TextInputEditText username;

@@ -1,7 +1,6 @@
 package br.com.plyom.plyomgram.adapter;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 
 import br.com.plyom.plyomgram.R;
 import br.com.plyom.plyomgram.model.Picture;
-import br.com.plyom.plyomgram.view.PictureDetailActivity;
+import br.com.plyom.plyomgram.post.view.PictureDetailActivity;
 
 public class PictureAdapterRecyclerView extends RecyclerView.Adapter<PictureAdapterRecyclerView.PictureViewHolder> {
 
