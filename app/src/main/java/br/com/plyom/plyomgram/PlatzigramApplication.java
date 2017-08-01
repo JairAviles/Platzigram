@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -28,15 +29,16 @@ public class PlatzigramApplication extends Application {
     }
 
     private void initFirebase() {
+        FirebaseCrash.log("Starting " + TAG);
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
-                    Log.i(TAG, "Logged user: " + firebaseUser.getEmail());
+                    FirebaseCrash.logcat(Log.INFO, TAG, "Logged user: " + firebaseUser.getEmail());
                 } else  {
-                    Log.w(TAG, "Not logged user");
+                    FirebaseCrash.logcat(Log.WARN, TAG, "Not logged user");
                 }
             }
         };

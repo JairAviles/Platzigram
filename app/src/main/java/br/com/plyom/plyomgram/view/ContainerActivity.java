@@ -16,11 +16,11 @@ import android.widget.Toast;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.crash.FirebaseCrash;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
 import br.com.plyom.plyomgram.R;
-import br.com.plyom.plyomgram.login.view.CreateAccountActivity;
 import br.com.plyom.plyomgram.login.view.LoginActivity;
 import br.com.plyom.plyomgram.post.view.HomeFragment;
 import br.com.plyom.plyomgram.view.fragment.ProfileFragment;
@@ -96,6 +96,7 @@ public class ContainerActivity extends AppCompatActivity {
     }
 
     private void initFirebase() {
+        FirebaseCrash.log("Starting variables in " + TAG);
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override

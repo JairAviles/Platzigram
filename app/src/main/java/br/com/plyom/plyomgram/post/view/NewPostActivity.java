@@ -6,11 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -44,6 +44,7 @@ public class NewPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
         ButterKnife.bind(this);
+        FirebaseCrash.log("Starting " + TAG);
         app = (PlatzigramApplication) getApplicationContext();
         storageReference = app.getStorageReferences();
 
@@ -75,15 +76,16 @@ public class NewPostActivity extends AppCompatActivity {
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.e(TAG, e.toString());
+                FirebaseCrash.logcat(Log.ERROR, TAG, e.toString());
                 e.printStackTrace();
+                FirebaseCrash.report(e);
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Uri uriPhoto = taskSnapshot.getDownloadUrl();
                 String photoUrl = uriPhoto.toString();
-                Log.i(TAG, "URL photo > " + photoUrl);
+                FirebaseCrash.logcat(Log.WARN, TAG, "URL photo > " + photoUrl);
                 finish();
             }
         });

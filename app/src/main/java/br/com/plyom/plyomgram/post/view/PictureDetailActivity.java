@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
@@ -40,6 +41,7 @@ public class PictureDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_picture_detail);
         ButterKnife.bind(this);
         showToolbar("", true);
+        FirebaseCrash.log("Starting " + TAG);
         app = (PlatzigramApplication) getApplicationContext();
         storageReference = app.getStorageReferences();
 
@@ -73,7 +75,9 @@ public class PictureDetailActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(PictureDetailActivity.this, "Oucrrio un error al traer la foto", Toast.LENGTH_SHORT);
                 Log.e(TAG, e.getMessage());
+                FirebaseCrash.logcat(Log.ERROR, TAG, e.getMessage());
                 e.printStackTrace();
+                FirebaseCrash.report(e);
             }
         });
     }

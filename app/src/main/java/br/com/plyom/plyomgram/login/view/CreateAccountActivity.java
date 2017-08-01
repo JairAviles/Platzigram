@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.crash.FirebaseCrash;
 
 import br.com.plyom.plyomgram.R;
 import butterknife.BindView;
@@ -71,15 +72,16 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     private void initFirebase() {
+        FirebaseCrash.log("Starting " + TAG);
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
-                    Log.i(TAG, "User logged " + firebaseUser.getEmail());
+                    FirebaseCrash.logcat(Log.INFO, TAG, "User logged");
                 } else  {
-                    Log.w(TAG, "User not logged");
+                    FirebaseCrash.logcat(Log.WARN, TAG, "User not logged");
                 }
             }
         };

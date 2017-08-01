@@ -18,6 +18,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.crash.FirebaseCrash;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -46,6 +48,7 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     private String photoPathTemp = "";
+    private final String TAG = HomeFragment.class.getName();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -56,6 +59,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        FirebaseCrash.log("Starting " + TAG);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
         showToolbar(getResources().getString(R.string.tab_home), false);
@@ -108,6 +112,7 @@ public class HomeFragment extends Fragment {
                 photoFile = createImageFile();
             } catch (Exception e) {
                 e.printStackTrace();
+                FirebaseCrash.report(e);
             }
 
             if(photoFile != null) {
@@ -137,7 +142,7 @@ public class HomeFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == REQUEST_CAMERA && resultCode == getActivity().RESULT_OK) {
-            Log.d("HomeFragment", "Camera accessed");
+            FirebaseCrash.logcat(Log.DEBUG, TAG, "Camera accessed");
             Intent i = new Intent(getActivity(), NewPostActivity.class);
             i.putExtra("PHOTO_PATH_TEMP", photoPathTemp);
             startActivity(i);
