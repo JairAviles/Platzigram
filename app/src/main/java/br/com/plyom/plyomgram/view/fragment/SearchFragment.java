@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.crash.FirebaseCrash;
+
 import java.util.ArrayList;
 
 import br.com.plyom.plyomgram.R;
@@ -23,6 +25,8 @@ import br.com.plyom.plyomgram.model.Picture;
 public class SearchFragment extends Fragment {
 
 
+    private final String TAG = SearchFragment.class.getName();
+
     public SearchFragment() {
         // Required empty public constructor
     }
@@ -32,6 +36,7 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        FirebaseCrash.log("Starting variables in " + TAG);
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         showToolbar(getResources().getString(R.string.tab_search), false, view);
         RecyclerView picturesRecycler = (RecyclerView) view.findViewById(R.id.pictureRecycler);

@@ -11,10 +11,16 @@
     <string name="hint_confirm_password">Confirm password</string>
     <string name="text_button_create_account">Join Us</string>
     <string name="toolbar_title_create_account">Create Account</string>
-    <string name="firstword_card">Hace</string>
-    <string name="timecard_card">4 días</string>
+    <string name="firstword_card">Since</string>
+    <string name="timecard_card">4 days</string>
     <string name="tab_search">Search</string>
     <string name="tab_home">Home</string>
     <string name="tab_profile">Profile</string>
-    <string name="secondword_detail">Me gusta</string>
+    <string name="secondword_detail">Like</string>
+    <string name="login_error">An error has occurred:</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description</string>
+    <string name="text_button_create_post">Create Post</string>
+    <string name="menu_signout">Sign out</string>
+    <string name="menu_about">About</string>
 </resources>

@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.crash.FirebaseCrash;
+
 import java.util.ArrayList;
 
 import br.com.plyom.plyomgram.R;
@@ -22,6 +24,8 @@ import br.com.plyom.plyomgram.model.Picture;
 public class ProfileFragment extends Fragment {
 
 
+    private final String TAG = ProfileFragment.class.getName();
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -31,6 +35,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        FirebaseCrash.log("Starting " + TAG);
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         showToolbar("", false, view);
 
